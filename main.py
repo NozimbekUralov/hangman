@@ -1,4 +1,5 @@
 import random, os
+from man import a, b, c
 
 words = {
     "words": [
@@ -11,6 +12,10 @@ random_word = random.choice(words["words"])
 
 context = list("_" * len(random_word["name"]))
 
+man = [a, b, c]
+
+ms_count = 0
+
 
 while True:
     
@@ -22,7 +27,12 @@ while True:
 
     if guess not in random_word["name"]:
         os.system("clear")
-        print("Wrong guess")
+        print("Wrong guess", man[ms_count], sep="\n")
+        ms_count += 1
+        if ms_count > 2:
+            print("You lost")
+            break
+        
     else:
         if guess in random_word["name"]:
             guesses = [i for i in range(len(random_word["name"])) if random_word["name"][i] == guess]
